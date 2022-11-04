@@ -1,0 +1,40 @@
+# FIle name: main.py
+# external library: requirements.sh
+# OS: ubuntu-latest
+
+name: Python Package using Conda
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.x']
+    name: Python ${{ matrix.python-version }} sample
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: x64
+      - run: chmod 777 Python/*;
+      - run: python Python/ETF/AAPL.py; 
+      - run: python Python/ETF/GOOGL.py; 
+      - run: python Python/ETF/MSFT.py; 
+      - run: python Python/Cryptocurrency/BTC.py; 
+      - run: python Python/Cryptocurrency/ETH.py; 
+      - run: python Python/Cryptocurrency/SOL.py; 
+      - run: python Python/Index/ABCERI.py; 
+      - run: python Python/Index/BGCI.py; 
+      - run: python Python/Index/NDX.py; 
+      - run: python "Python/Mutual Fund/AGTHX.py";
+      - run: python "Python/Mutual Fund/ENPSX.py";
+      - run: python "Python/Mutual Fund/FXAIX.py";
+      - run: python Python/Option/AAPL.py; 
+      - run: python Python/Option/MSFT.py; 
+      - run: python Python/Option/OIL.py; 
+      
+      
